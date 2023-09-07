@@ -927,6 +927,7 @@ layer_0/tile_data = PackedInt32Array(35, 196608, 1, 34, 131072, 1, 33, 131072, 1
 
 [node name="testBody" type="RigidBody2D" parent="."]
 position = Vector2(432, 279)
+rotation = 0.127409
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testBody"]
 position = Vector2(47, -19.5)
@@ -938,4 +939,4 @@ scale = Vector2(0.34375, 0.34375)
 texture = ExtResource("2_vb3hm")
 
 [node name="Player" parent="." instance=ExtResource("3_ftd72")]
-position = Vector2(360, 248)
+position = Vector2(250, 170)

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 public partial class player : CharacterBody2D
@@ -8,7 +9,7 @@ public partial class player : CharacterBody2D
 	public const float JumpVelocity = -400.0f;
 	private AnimationTree animationTree;
 	private Sprite2D Skin;
-	public Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
+	public Godot.Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -53,15 +54,17 @@ public partial class player : CharacterBody2D
 
 		} else if (direction.X > 0) {
 			Skin.FlipH = false;
+			Skin.Position = new Godot.Vector2(7, 0);
 		} else {
 			Skin.FlipH = true;
+			Skin.Position = new Godot.Vector2(-7, 0);
 		}
 	}
 
 	//läuft die ganze Zeit
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		Godot.Vector2 velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -75,7 +78,7 @@ public partial class player : CharacterBody2D
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		//Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 		direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
+		if (direction != Godot.Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;
 		}
