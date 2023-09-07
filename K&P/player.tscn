@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://8oetrfiairme"]
+[gd_scene load_steps=51 format=3 uid="uid://8oetrfiairme"]
 
 [ext_resource type="Script" path="res://player.cs" id="1_b3by5"]
 [ext_resource type="Texture2D" uid="uid://dbs7m7cw86rfq" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="1_kd47e"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://f0lsjanq468i" path="res://assets/Kings and Pigs/Sprites/01-King Human/Fall (78x58).png" id="5_m6dn7"]
 [ext_resource type="Texture2D" uid="uid://brlivqruryycr" path="res://assets/Kings and Pigs/Sprites/01-King Human/Ground (78x58).png" id="6_x1q27"]
 [ext_resource type="Texture2D" uid="uid://dj8oihmmp4nx3" path="res://assets/Kings and Pigs/Sprites/01-King Human/Dead (78x58).png" id="7_5cyxa"]
+[ext_resource type="Texture2D" uid="uid://cu2fnmjspnlc7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door In (78x58).png" id="8_kapl8"]
+[ext_resource type="Texture2D" uid="uid://lpbvob4e82g7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" id="9_fff2u"]
+[ext_resource type="Texture2D" uid="uid://b4km2slagtxue" path="res://assets/Kings and Pigs/Sprites/01-King Human/Attack (78x58).png" id="10_w3b1o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_to5qh"]
 
@@ -377,9 +380,169 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
 }
 
+[sub_resource type="Animation" id="Animation_ouc6s"]
+resource_name = "Door In"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_kapl8")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skin:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skin:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skin:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_e14le"]
+resource_name = "Door Out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_fff2u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skin:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skin:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skin:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_vvwga"]
+resource_name = "attack"
+length = 10.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skin:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_w3b1o")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skin:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skin:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skin:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xyd8n"]
 _data = {
+"Door In": SubResource("Animation_ouc6s"),
+"Door Out": SubResource("Animation_e14le"),
 "RESET": SubResource("Animation_f1rg1"),
+"attack": SubResource("Animation_vvwga"),
 "dead": SubResource("Animation_8ltka"),
 "fall": SubResource("Animation_wskue"),
 "ground": SubResource("Animation_movme"),
@@ -387,6 +550,12 @@ _data = {
 "jump": SubResource("Animation_avbal"),
 "run": SubResource("Animation_0gbgf")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dkhj6"]
+animation = &"Door Out"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ejprm"]
+animation = &"attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lk458"]
 animation = &"fall"
@@ -458,9 +627,6 @@ blend_mode = 1
 advance_mode = 2
 advance_condition = &"fall"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tsnb"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_60v32"]
 advance_mode = 2
 advance_condition = &"jump"
@@ -469,17 +635,52 @@ advance_condition = &"jump"
 advance_mode = 2
 advance_condition = &"is_running"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2xhng"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yvwcu"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tlsad"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ad417"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vxg4c"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yv2a5"]
+advance_mode = 2
+advance_condition = &"is_running"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vrlmw"]
+advance_mode = 2
+advance_condition = &"fall"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p1nw2"]
+advance_mode = 2
+advance_condition = &"jump"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oqa3w"]
+"states/Door Out/node" = SubResource("AnimationNodeAnimation_dkhj6")
+"states/Door Out/position" = Vector2(345, 228)
 states/End/position = Vector2(896, 228)
 states/Start/position = Vector2(193, 228)
+states/attack/node = SubResource("AnimationNodeAnimation_ejprm")
+states/attack/position = Vector2(511, 36)
 states/fall/node = SubResource("AnimationNodeBlendSpace2D_4jc6r")
 states/fall/position = Vector2(611, 136)
 states/jump/node = SubResource("AnimationNodeBlendSpace2D_p0rou")
 states/jump/position = Vector2(395, 136)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_jts8a")
 states/move/position = Vector2(511, 228)
-transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_gx7fd"), "Start", "move", SubResource("AnimationNodeStateMachineTransition_0tsnb"), "move", "jump", SubResource("AnimationNodeStateMachineTransition_60v32"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_qhk0y")]
-graph_offset = Vector2(-142, 52)
+transitions = ["jump", "fall", SubResource("AnimationNodeStateMachineTransition_gx7fd"), "move", "jump", SubResource("AnimationNodeStateMachineTransition_60v32"), "fall", "move", SubResource("AnimationNodeStateMachineTransition_qhk0y"), "Start", "Door Out", SubResource("AnimationNodeStateMachineTransition_2xhng"), "Door Out", "move", SubResource("AnimationNodeStateMachineTransition_yvwcu"), "jump", "attack", SubResource("AnimationNodeStateMachineTransition_tlsad"), "fall", "attack", SubResource("AnimationNodeStateMachineTransition_ad417"), "move", "attack", SubResource("AnimationNodeStateMachineTransition_vxg4c"), "attack", "move", SubResource("AnimationNodeStateMachineTransition_yv2a5"), "attack", "fall", SubResource("AnimationNodeStateMachineTransition_vrlmw"), "attack", "jump", SubResource("AnimationNodeStateMachineTransition_p1nw2")]
+graph_offset = Vector2(-76, 5)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_b3by5")
@@ -488,9 +689,9 @@ script = ExtResource("1_b3by5")
 shape = SubResource("CapsuleShape2D_to5qh")
 
 [node name="Skin" type="Sprite2D" parent="."]
+position = Vector2(7, 0)
 texture = ExtResource("1_kd47e")
 hframes = 11
-frame = 5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
@@ -504,6 +705,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_oqa3w")
 anim_player = NodePath("../AnimationPlayer")
 active = true
+parameters/conditions/attack = false
 parameters/conditions/fall = false
 parameters/conditions/is_running = false
 parameters/conditions/jump = false
