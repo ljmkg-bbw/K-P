@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bh0irfl01womy"]
+[gd_scene load_steps=13 format=3 uid="uid://bh0irfl01womy"]
 
 [ext_resource type="Texture2D" uid="uid://cb37027xvtmp" path="res://assets/Kings and Pigs/Sprites/14-TileSets/Terrain (32x32).png" id="1_aa28j"]
 [ext_resource type="Texture2D" uid="uid://cckukvltr517w" path="res://assets/Kings and Pigs/Sprites/14-TileSets/Decorations (32x32).png" id="2_8k2nv"]
 [ext_resource type="Texture2D" uid="uid://dpr63cae3ug6f" path="res://icon.svg" id="2_vb3hm"]
 [ext_resource type="PackedScene" uid="uid://8oetrfiairme" path="res://player.tscn" id="3_ftd72"]
+[ext_resource type="PackedScene" uid="uid://cxn74yxkqb6w2" path="res://pig.tscn" id="5_hs7h5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7jpun"]
 
@@ -977,6 +978,46 @@ terrain_set_0/terrain_1/color = Color(0.980392, 0.811765, 0.678431, 1)
 sources/0 = SubResource("TileSetAtlasSource_t428u")
 sources/1 = SubResource("TileSetAtlasSource_225es")
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c63ny"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CSharpScript" id="CSharpScript_f8685"]
+script/source = "using Godot;
+using System;
+
+public partial class testBody : RigidBody2D
+{
+	private Vector2 initialPosition;
+	private Vector2 playerOffset;
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+		// Speichere die ursprüngliche Position des Blocks
+		initialPosition = Position;
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		// Berechne den Versatz zwischen Spieler und Block
+		playerOffset = GlobalPosition - GetNode<CharacterBody2D>(\"Player\").GlobalPosition;
+	}
+	
+	public override void _PhysicsProcess(double delta)
+	{
+		// Bewege den Block, wenn der Spieler in der Nähe ist
+		if (playerOffset.Length() < 100.0f) // Ändere diesen Wert nach Bedarf
+		{
+			// Setze die Position des Blocks auf die Position des Spielers plus dem Versatz
+			Position = GetNode<CharacterBody2D>(\"Player\").Position + playerOffset;
+		}
+	}
+}
+
+"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pldvt"]
 size = Vector2(44, 43)
 
@@ -997,8 +1038,14 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(524299, 131073, 2, 524300, 196609, 2, 524301, 262145, 2, 524303, 131073, 2, 524304, 196609, 2, 524305, 262145, 2, 393232, 262145, 3, 393228, 131073, 3, 917517, 131073, 1, 917518, 196609, 1, 917519, 262145, 1, 983050, 327681, 1, 851987, 327681, 1, 786455, 327681, 1, 720915, 327681, 1, 655383, 327681, 1, 589843, 327681, 1)
 
 [node name="testBody" type="RigidBody2D" parent="."]
-position = Vector2(432, 279)
+position = Vector2(415, 414)
 rotation = 0.127409
+collision_priority = 2.0
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_c63ny")
+gravity_scale = 0.1
+can_sleep = false
+script = SubResource("CSharpScript_f8685")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testBody"]
 position = Vector2(47, -19.5)
@@ -1011,3 +1058,6 @@ texture = ExtResource("2_vb3hm")
 
 [node name="Player" parent="." instance=ExtResource("3_ftd72")]
 position = Vector2(250, 170)
+
+[node name="Pig" parent="." instance=ExtResource("5_hs7h5")]
+position = Vector2(751, 302)
