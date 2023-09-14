@@ -1,0 +1,121 @@
+[gd_scene load_steps=19 format=3 uid="uid://b82xtfpms0jho"]
+
+[ext_resource type="Script" path="res://pig.cs" id="1_cptdk"]
+[ext_resource type="Texture2D" uid="uid://bmyalp8psij4h" path="res://assets/Kings and Pigs/Sprites/06-Pig Hide in the Box/Fall (26x20).png" id="2_2ig0t"]
+[ext_resource type="Texture2D" uid="uid://c3pkm8exhtyps" path="res://assets/Kings and Pigs/Sprites/06-Pig Hide in the Box/Ground (26x20).png" id="3_dhtxa"]
+[ext_resource type="Texture2D" uid="uid://civv1rp44133u" path="res://assets/Kings and Pigs/Sprites/06-Pig Hide in the Box/Jump (26x20).png" id="4_mb1ar"]
+[ext_resource type="Texture2D" uid="uid://6a2dw3bsoryj" path="res://assets/Kings and Pigs/Sprites/06-Pig Hide in the Box/Jump Anticipation (26x20).png" id="5_p1o3m"]
+[ext_resource type="Texture2D" uid="uid://c3j0pj6jeg50d" path="res://assets/Kings and Pigs/Sprites/06-Pig Hide in the Box/Looking Out (26x20).png" id="6_v2avh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amoxe"]
+atlas = ExtResource("2_2ig0t")
+region = Rect2(0, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32l0v"]
+atlas = ExtResource("3_dhtxa")
+region = Rect2(0, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4sipr"]
+atlas = ExtResource("4_mb1ar")
+region = Rect2(0, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5wlp"]
+atlas = ExtResource("4_mb1ar")
+region = Rect2(26, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb8p3"]
+atlas = ExtResource("5_p1o3m")
+region = Rect2(0, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw27t"]
+atlas = ExtResource("5_p1o3m")
+region = Rect2(26, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ooa"]
+atlas = ExtResource("6_v2avh")
+region = Rect2(0, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff02t"]
+atlas = ExtResource("6_v2avh")
+region = Rect2(26, 0, 26, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhxx1"]
+atlas = ExtResource("6_v2avh")
+region = Rect2(52, 0, 26, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryesr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amoxe")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32l0v")
+}],
+"loop": true,
+"name": &"ground",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4sipr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5wlp")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb8p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw27t")
+}],
+"loop": true,
+"name": &"jump_anticipation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3ooa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff02t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhxx1")
+}],
+"loop": true,
+"name": &"looking_out",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2lxd"]
+size = Vector2(19, 17)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fqnxu"]
+
+[node name="Pig" type="CharacterBody2D"]
+script = ExtResource("1_cptdk")
+
+[node name="Skin" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ryesr")
+animation = &"looking_out"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Skin"]
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_l2lxd")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_fqnxu")
+anim_player = NodePath("../Skin/AnimationPlayer")

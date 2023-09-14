@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=3 uid="uid://kbc1hqnsloxg"]
+
+[ext_resource type="Texture2D" uid="uid://k5d5kvhe0hhg" path="res://assets/Kings and Pigs/Sprites/12-Live and Coins/Live Bar.png" id="1_kretn"]
+[ext_resource type="Texture2D" uid="uid://b6in6wv6kl5ek" path="res://assets/Kings and Pigs/Sprites/12-Live and Coins/Small Heart Idle (18x14).png" id="2_rfs16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt6ci"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2k7c"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by7uf"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(36, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_andjq"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(54, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wie7"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(72, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whwxc"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(90, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqnr3"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(108, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv8q0"]
+atlas = ExtResource("2_rfs16")
+region = Rect2(126, 0, 18, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51v7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt6ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2k7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by7uf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_andjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wie7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whwxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqnr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv8q0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = 0.41
+anchor_top = 0.41
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -472.32
+offset_top = -265.68
+offset_right = -208.0
+offset_bottom = -117.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LiveBar" type="Sprite2D" parent="."]
+position = Vector2(82.7059, 49)
+scale = Vector2(2.29412, 2.29412)
+texture = ExtResource("1_kretn")
+
+[node name="heart1" type="AnimatedSprite2D" parent="."]
+position = Vector2(52.8527, 49)
+scale = Vector2(2.3497, 2.28571)
+sprite_frames = SubResource("SpriteFrames_51v7w")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.652374
+
+[node name="heart2" type="AnimatedSprite2D" parent="."]
+position = Vector2(78, 49)
+scale = Vector2(2.33333, 2.28571)
+sprite_frames = SubResource("SpriteFrames_51v7w")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.90048
+
+[node name="heart3" type="AnimatedSprite2D" parent="."]
+position = Vector2(103.5, 49)
+scale = Vector2(2.27778, 2.28571)
+sprite_frames = SubResource("SpriteFrames_51v7w")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.201628
