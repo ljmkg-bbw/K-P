@@ -168,6 +168,30 @@ tracks/3/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtboxHammer1/CollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtboxHammer2/CollisionPolygon2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_vvwga"]
 resource_name = "attack"
@@ -219,6 +243,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HurtboxHammer1/CollisionPolygon2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtboxHammer2/CollisionPolygon2D:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_8ltka"]
@@ -691,6 +739,24 @@ script = ExtResource("1_b3by5")
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_to5qh")
 
+[node name="HurtboxHammer1" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxHammer1"]
+light_mask = 0
+position = Vector2(33, 0)
+polygon = PackedVector2Array(-9, -23, 0, -23, 4, -21, 8, -17, 10, -13, 11, -10, 12, -7, 13, -2, 13, 6, 12, 9, 11, 13, 10, 15, 2, 23, -4, 26, -10, 28, -14, 29, -23, 29, -28, 28, -32, 27, -35, 26, -41, 23, -46, 18, -46, 16, -43, 16, -40, 17, -28, 19, -21, 19, -16, 17, -14, 16, -11, 13, -10, 11, -9, 6, -9, 1, -10, -3, -13, -9, -14, -12, -14, -17, -13, -19)
+
+[node name="HurtboxHammer2" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HurtboxHammer2"]
+light_mask = 0
+polygon = PackedVector2Array(16, -25, 23, -25, 26, -24, 30, -22, 36, -16, 37, -14, 39, -8, 39, -1, 37, 5, 35, 9, 29, 15, 26, 15, 26, 14, 27, 13, 29, 9, 29, 1, 28, -2, 27, -4, 23, -8, 15, -12, 13, -14, 13, -21, 14, -23)
+disabled = true
+
 [node name="Skin" type="Sprite2D" parent="."]
 position = Vector2(7, 0)
 texture = ExtResource("1_kd47e")
@@ -699,7 +765,7 @@ hframes = 11
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="Control" parent="Camera2D" instance=ExtResource("3_erjfu")]
+[node name="Hud" parent="Camera2D" instance=ExtResource("3_erjfu")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -717,3 +783,5 @@ parameters/conditions/jump = false
 parameters/fall/blend_position = Vector2(0, 0)
 parameters/jump/blend_position = Vector2(0, 0)
 parameters/move/blend_position = 0.0
+
+[connection signal="body_entered" from="HurtboxHammer1" to="." method="_on_hurtbox_hammer_1_body_entered"]

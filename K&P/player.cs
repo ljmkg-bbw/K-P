@@ -8,6 +8,7 @@ public partial class player : CharacterBody2D
 {
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
+	public int Health = 3;
 	private AnimationTree animationTree;
 	private Sprite2D Skin;
 	public Godot.Vector2 direction = Input.GetVector("move_left", "move_right", "interact", "ui_down");
@@ -73,6 +74,20 @@ public partial class player : CharacterBody2D
 		}
 	}
 
+	public void ReduceHealth()
+	{
+		
+	}
+	private void _on_hurtbox_hammer_1_body_entered(Node2D body)
+	{
+	// Replace with function body.
+		if (IsInGroup("enemy"))
+		{
+			body.destroy();		
+		}
+	}
+
+
 	//läuft die ganze Zeit
 	public override void _PhysicsProcess(double delta)
 	{
@@ -105,3 +120,6 @@ public partial class player : CharacterBody2D
 		UpdateAnimation();
 	}
 }
+
+
+
